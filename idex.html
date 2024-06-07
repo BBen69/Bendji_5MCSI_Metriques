@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MON CV</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #9e84a1;
+        }
+        
+        th:first-child, td:first-child {
+            border-left: none;
+        }
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+        tr:last-child th, tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:nth-child(5) th, tr:nth-child(5) td {
+            border-top: 2px solid #000;
+        }
+        
+        tr:nth-child(6) th, tr:nth-child(6) td {
+            border-top: 2px solid #000;
+        }
+
+        canvas { background: #eee; }
+
+    </style>
+</head>
+<header>
+    <div>   
+        <canvas id="myCanvas" width="1500" height="90"></canvas>
+    </div>
+</header>
+<body>
+    <h1 style="text-align: center; background-color: aquamarine;">CV Bendji JUPITER</h1>
+    <table>
+        <tr>
+            <th>Bendji</th>
+            <td>JUPITER</td>
+        </tr>
+        <tr>
+        </tr>
+        <hr>
+        <tr>
+            <th>Adresse</th>
+            <td>123 Rue du CV</td>
+        </tr>
+        <tr>
+            <th>Permis</th>
+            <td>B</td>
+        </tr>
+        <tr>
+            <th>Formation</th>
+            <td>
+                <ul>
+                    <li>2023 - 2024 : Licence en Informatique</li>
+                    <li>2023 - 2023 : Certification Google Cybersecurity</li>
+                    <li>2021 - 2023 : DUT Informatique</li>
+                    <li>2017 - 2018 : BAC TAI (niveaux 4)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Compétences</th>
+            <td>
+                <ul>
+                    <li>Programmation (Java, Python)</li>
+                    <li>Web development (HTML, CSS, JavaScript)</li>
+                    <li>Base de données (MySQL, NoSQL)</li>
+                    <li>Base de données (NoSQL)</li>
+                    <li>Active Directory</li>
+                    <li>Veeam Backup</li>
+                    <li>Windows Server (2022, 2012, 2008)</li>
+                    <li>Création de packages Adobe</li>
+                    <li>Portail Exchange et Office 365</li>
+                    <li>Support Hardware</li>
+                    <li>Gestion du Stock</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>informations complémentaires</th>
+            <td>
+                <ul>
+                    <li>2023 - 2024 : Licence en Informatique</li>
+                    <li>2021 - 2023 : DUT Informatique</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+    var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var ballRadius = 19;
+var x = canvas.width/2;
+var y = canvas.height-35;
+var dx = 2;
+var dy = -2;
+
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = "#ff4500";
+
+  // Add shadow for blur effect
+  ctx.shadowColor = "black";
+  ctx.shadowBlur = ballRadius / 2; // Adjust blur amount as needed
+  ctx.shadowOffsetX = ballRadius / 5;
+  ctx.shadowOffsetY = ballRadius / 5;
+
+  ctx.fill();
+  ctx.closePath();
+
+  // Clear shadow styles to prevent affecting other elements
+  ctx.shadowColor = null;
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+    }
+    
+    x += dx;
+    y += dy;
+}
+
+setInterval(draw, 1);
+</script>
+</html>
